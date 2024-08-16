@@ -5,8 +5,15 @@ const int NUM_PATHS = 4;
 
 int main()
 {
+    person_t Vinny;
 
-
+    Vinny.Name = "Vincent";
+    Vinny.Age = 5;
+    Vinny.mySex =
+    Birthday(&Vinny);
+    SexChange(&Vinny);
+    printf("birthday made him %d years old",Vinny.Age,Vinny.mySex);
+    return 0;
 
     path_t paths[NUM_PATHS];
     paths[0].DeltaT = 1000.123;
@@ -14,8 +21,9 @@ int main()
 
     result_t Results;
 
-    Results.MassFlow = 0xF0E9 >> 0xFF;
+    Results.MassFlow = 0xFFFFFFFFFFFFFFFF;
 
+    printf("%f",Results.MassFlow);
 
     for(int i = 0; i < NUM_PATHS; i++){
         printf("Path %d Delta: %f \r\n",i+1,paths[i].DeltaT);
@@ -28,6 +36,17 @@ int main()
     printf("%f",Results.MassFlow);
 
     return 0;
+}
+
+void Birthday(person_t* person){
+    person->Age++;
+}
+void SexChange(person_t* person){
+    if(SexTypes.Male){
+        person->mySex.Female;
+    } else{
+        (*person).mySex = SexTypes.Male;
+    }
 }
 
 void Deliver(path_t path){
