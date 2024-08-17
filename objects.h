@@ -16,11 +16,11 @@ typedef struct {
 typedef enum SexTypes{
     Male = 0,
     Female = 1
-}Sex;
+} SexItem;
 
 typedef struct {
     char Name;
     int Age;
-    Sex mySex;
+    enum SexTypes mySex;
 } person_t;
 

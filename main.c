@@ -9,10 +9,10 @@ int main()
 
     Vinny.Name = "Vincent";
     Vinny.Age = 5;
-    Vinny.mySex =
+    Vinny.mySex = Male;
     Birthday(&Vinny);
     SexChange(&Vinny);
-    printf("birthday made him %d years old",Vinny.Age,Vinny.mySex);
+    printf("birthday made him %d years old %d",Vinny.Age,Vinny.mySex);
     return 0;
 
     path_t paths[NUM_PATHS];
@@ -20,8 +20,6 @@ int main()
     paths[2].TDn = 100000.234;
 
     result_t Results;
-
-    Results.MassFlow = 0xFFFFFFFFFFFFFFFF;
 
     printf("%f",Results.MassFlow);
 
@@ -42,10 +40,10 @@ void Birthday(person_t* person){
     person->Age++;
 }
 void SexChange(person_t* person){
-    if(SexTypes.Male){
-        person->mySex.Female;
+    if(person->mySex == Male){
+        person->mySex = Female;
     } else{
-        (*person).mySex = SexTypes.Male;
+        (*person).mySex = Male;
     }
 }
 
