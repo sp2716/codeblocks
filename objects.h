@@ -13,14 +13,13 @@ typedef struct {
     double VolumeFlow;
 } result_t;
 
-typedef enum SexTypes{
+typedef enum GenderTypes {
     Male = 0,
     Female = 1
-} SexItem;
+} GenderItem;
 
-typedef struct {
+typedef struct Person{
     char Name;
     int Age;
-    enum SexTypes mySex;
+    enum GenderTypes Gender;
 } person_t;
-
