@@ -2,9 +2,21 @@
 #include "objects.h"
 
 const int NUM_PATHS = 4;
-
+const int ARR_SIZE = 1024;
 int main()
 {
+    char* bytes = (char*)malloc(ARR_SIZE);
+    char* bufptr = &bytes;
+
+    int j = 0;
+
+    printf("pointer of buffer is at %p and size is %p\n",bufptr, sizeof(bytes));
+    printf("Contents of buffer as follows:\n");
+        for(int i = 0; i < ARR_SIZE; i++){
+        j++;
+        bytes[i] = j;
+    }
+    ToHex(bytes, ARR_SIZE);
     person_t Vinny;
     Vinny.Name = "Vincent";
     Vinny.Age = 5;
@@ -12,7 +24,6 @@ int main()
     Birthday(&Vinny);
     SexChange(&Vinny);
     printf("birthday made him %d years old %d",Vinny.Age,Vinny.Gender);
-    return 0;
 
     path_t paths[NUM_PATHS];
     paths[0].DeltaT = 1234.123;
@@ -27,16 +38,25 @@ int main()
         printf("Path %d TDn: %f \r\n",i+1,paths[i].TDn);
         printf("Path %d TUp: %f \r\n",i+1,paths[i].TUp);
         printf("the path %d object is at memory address %p\r\n",i+1,&paths[i]);
-        Deliver(&paths[i]);
     };
 
     printf("%f",Results.MassFlow);
-
     return 0;
 }
 
+void ToHex(char* buf, int length){
+    int len = sizeof(buf);
+    char* result = (char*)malloc(len * 2 * sizeof(char));
+    int resPos = 0;
+    for(int i = 0; i < length; i++){
+        printf("%02X", buf[i]);
+    }
+    printf("\n");
+}
+//Passing/manipulating a variable by reference here using pointers
+//Remember that the arrow can be overridden but (*person).propertyName cannot be overridden
 void Birthday(person_t* person){
-    person->Age++;
+    (*person).Age++;
 }
 
 void SexChange(person_t* person){
