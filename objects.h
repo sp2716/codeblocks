@@ -6,7 +6,10 @@ typedef struct Path{
     double TUp;
     double TDn;
     double DeltaT;
+    int Performance
 } path_t;
+
+
 
 typedef struct {
     double MassFlow;

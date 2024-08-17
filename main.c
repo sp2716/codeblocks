@@ -5,18 +5,15 @@ const int NUM_PATHS = 4;
 const int ARR_SIZE = 1024;
 int main()
 {
-    char* bytes = (char*)malloc(ARR_SIZE);
-    char* bufptr = &bytes;
-
-    int j = 0;
-
-    printf("pointer of buffer is at %p and size is %p\n",bufptr, sizeof(bytes));
-    printf("Contents of buffer as follows:\n");
-        for(int i = 0; i < ARR_SIZE; i++){
-        j++;
-        bytes[i] = j;
+    unsigned int ints[1024];
+    int* bufptr = &ints;
+    int length = sizeof(ints)/sizeof(ints[0]);
+    for(unsigned int i = 0; i < length; i++){
+        ints[i] = i;
     }
-    ToHex(bytes, ARR_SIZE);
+    printf("pointer of buffer is at %p and size is %d\n",bufptr, length);
+    printf("Contents of buffer as follows:\n");
+    ToHex(bufptr,length);
     person_t Vinny;
     Vinny.Name = "Vincent";
     Vinny.Age = 5;
@@ -44,12 +41,10 @@ int main()
     return 0;
 }
 
-void ToHex(char* buf, int length){
-    int len = sizeof(buf);
-    char* result = (char*)malloc(len * 2 * sizeof(char));
-    int resPos = 0;
-    for(int i = 0; i < length; i++){
-        printf("%02X", buf[i]);
+void ToHex(int buf[], int len){
+
+    for(int i = 0; i < len; i++){
+        printf("%08X", buf[i]); // 08X => 8 hex characters = 4 bytes
     }
     printf("\n");
 }
