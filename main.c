@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include "objects.h"
 //bit macros
-#define set(a,n)   a|=(1<<n)
-#define reset(a,n) (a &= ~(1<<n))
-#define toggle(a,n)  a^=(1<<n)
+#define set(a,n)   (a|=(1<<n))
+#define reset(a,n) (a&=~(1<<n))
+#define toggle(a,n)  (a^=(1<<n))
 
 typedef unsigned char uint8_t;
 
@@ -15,19 +15,27 @@ int main()
     printf("Initializing application\n");
     uint8_t bytes[256];
     int* bufptr = &bytes;
-    printf("Initialized buffer\n");
-
+    printf("Bit set test\n");
     int test = 0;
-    printf("%d\n",test);
     for(int i = 0; i < 8; i++){
             set(test,i);
             printf("%x\n",test);
     }
-    for(int i = 8; i > -1; i--){
+    printf("bit reset test\n");
+    for(int i = 7; i > -1; i--){
         reset(test, i);
         printf("%x\n", test);
     }
-
+    printf("toggle on test\n");
+    for(int i = 0; i < 8; i++){
+        toggle(test, i);
+        printf("%x\n", test);
+    }
+    printf("toggle off test\n");
+    for(int i = 7; i > -1; i--){
+        toggle(test, i);
+        printf("%x\n", test);
+    }
 
 
     int length = sizeof(bytes)/sizeof(bytes[0]);

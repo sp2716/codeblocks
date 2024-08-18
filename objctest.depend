@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1723978590 source:c:\repos\codeblocks\objctest\main.c
+1723984281 source:c:\repos\codeblocks\objctest\main.c
 	<stdio.h>
 	"objects.h"
 
-1723978590 c:\repos\codeblocks\objctest\objects.h
+1723982448 c:\repos\codeblocks\objctest\objects.h
 	<stdio.h>
 
