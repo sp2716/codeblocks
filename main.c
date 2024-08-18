@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include "objects.h"
-#define Bitset(var,bitno) ((var) |=1UL<<(bitno))
+//bit macros
+#define set(a,n)   a|=(1<<n)
+#define reset(a,n) (a &= ~(1<<n))
+#define toggle(a,n)  a^=(1<<n)
+
 typedef unsigned char uint8_t;
 
 const int ARR_SIZE = 1024;
@@ -15,18 +19,21 @@ int main()
 
     int test = 0;
     printf("%d\n",test);
-    Bitset(test,0);
-    printf("%d\n",test);
-    Bitset(test,1);
-    printf("%d\n",test);
-    Bitset(test,0);
-    printf("%d\n",test);
+    for(int i = 0; i < 8; i++){
+            set(test,i);
+            printf("%x\n",test);
+    }
+    for(int i = 8; i > -1; i--){
+        reset(test, i);
+        printf("%x\n", test);
+    }
+
 
 
     int length = sizeof(bytes)/sizeof(bytes[0]);
     uint8_t j = 0;
     for(int i = 0; i < length; i++){
-        Bitset(bytes[i],j);
+        set(bytes[i],j);
         j++;
         if(j > 7){
             j = 0;
