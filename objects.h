@@ -2,14 +2,14 @@
 #include <stdio.h>
 //defines the structures of the flow meter in memory for calculations
 
+typedef unsigned char BYTE;
+
 typedef struct Path{
     double TUp;
     double TDn;
     double DeltaT;
     int Performance
 } path_t;
-
-
 
 typedef struct {
     double MassFlow;

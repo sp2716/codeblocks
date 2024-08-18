@@ -1,19 +1,43 @@
 #include <stdio.h>
 #include "objects.h"
+#define Bitset(var,bitno) ((var) |=1UL<<(bitno))
+typedef unsigned char uint8_t;
 
-const int NUM_PATHS = 4;
 const int ARR_SIZE = 1024;
+const int NUM_PATHS = 4;
+
 int main()
 {
-    unsigned int ints[1024];
-    int* bufptr = &ints;
-    int length = sizeof(ints)/sizeof(ints[0]);
-    for(unsigned int i = 0; i < length; i++){
-        ints[i] = i;
+    printf("Initializing application\n");
+    uint8_t bytes[256];
+    int* bufptr = &bytes;
+    printf("Initialized buffer\n");
+
+    int test = 0;
+    printf("%d\n",test);
+    Bitset(test,0);
+    printf("%d\n",test);
+    Bitset(test,1);
+    printf("%d\n",test);
+    Bitset(test,0);
+    printf("%d\n",test);
+
+
+    int length = sizeof(bytes)/sizeof(bytes[0]);
+    uint8_t j = 0;
+    for(int i = 0; i < length; i++){
+        Bitset(bytes[i],j);
+        j++;
+        if(j > 7){
+            j = 0;
+        }
     }
     printf("pointer of buffer is at %p and size is %d\n",bufptr, length);
     printf("Contents of buffer as follows:\n");
     ToHex(bufptr,length);
+    return 0;
+
+
     person_t Vinny;
     Vinny.Name = "Vincent";
     Vinny.Age = 5;
@@ -41,10 +65,10 @@ int main()
     return 0;
 }
 
-void ToHex(int buf[], int len){
+void ToHex(uint8_t buf[], int len){
 
     for(int i = 0; i < len; i++){
-        printf("%08X", buf[i]); // 08X => 8 hex characters = 4 bytes
+        printf("%02X", buf[i]); // 08X => 8 hex characters = 4 bytes
     }
     printf("\n");
 }
