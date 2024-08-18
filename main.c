@@ -56,7 +56,7 @@ int main()
     Vinny.Age = 5;
     Vinny.Gender = Male;
     Birthday(&Vinny);
-    SexChange(&Vinny);
+    GenderChange(&Vinny);
     printf("birthday made him %d years old %d",Vinny.Age,Vinny.Gender);
 
     path_t paths[NUM_PATHS];
@@ -91,7 +91,7 @@ void Birthday(person_t* person){
     (*person).Age++;
 }
 
-void SexChange(person_t* person){
+void GenderChange(person_t* person){
     if(person->Gender == Male){
         person->Gender = Female; //don't need the GenderTypes.Female like c#
     } else{
