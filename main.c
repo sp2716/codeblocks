@@ -5,8 +5,6 @@
 #define reset(a,n) (a&=~(1<<n))
 #define toggle(a,n)  (a^=(1<<n))
 
-typedef unsigned char uint8_t;
-
 const int ARR_SIZE = 1024;
 const int NUM_PATHS = 4;
 
