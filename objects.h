@@ -2,7 +2,7 @@
 #include <stdio.h>
 //defines the structures of the flow meter in memory for calculations
 
-typedef unsigned char BYTE;
+typedef unsigned char uint8_t
 
 typedef struct Path{
     double TUp;
