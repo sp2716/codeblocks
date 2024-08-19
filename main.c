@@ -1,28 +1,40 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "objects.h"
-//bit macros
-#define set(a,n)   (a|=(1<<n))
-#define reset(a,n) (a&=~(1<<n))
-#define toggle(a,n)  (a^=(1<<n))
-
-const int ARR_SIZE = 1024;
-const int NUM_PATHS = 4;
+#include <pthread.h>
+#include <string.h>
 
 int main()
 {
-    printf("Initializing application\n");
-    uint8_t bytes[256];
-    int* bufptr = &bytes;
-    printf("Bit set test\n");
+
+    int i, n;
+    n = 256;
+    uint8_t* ptr = (uint8_t*)calloc(n, sizeof(*ptr));
+    if(ptr == NULL){
+        return 0;
+    }
+    printf("Allocated at %p\n",ptr);
+    //memset(ptr,255,n); //way quicker than initializing or setting blocks with loop
+
+        // Print the elements of the array
+        printf("The elements of the %d element array are: \n",n);
+        for (i = 0; i < n; i++) {
+            printf("%02x", ptr[i]);
+        }
+
+        free(ptr);
+    return 0;
     int test = 0;
+
+    printf("Bit set test\n");
     for(int i = 0; i < 8; i++){
             set(test,i);
-            printf("%x\n",test);
+            printf(FORMAT_HEX,test); //leading zero causes that in output
     }
     printf("bit reset test\n");
     for(int i = 7; i > -1; i--){
         reset(test, i);
-        printf("%x\n", test);
+        printf(FORMAT_HEX, test);
     }
     printf("toggle on test\n");
     for(int i = 0; i < 8; i++){
@@ -35,20 +47,6 @@ int main()
         printf("%x\n", test);
     }
 
-
-    int length = sizeof(bytes)/sizeof(bytes[0]);
-    uint8_t j = 0;
-    for(int i = 0; i < length; i++){
-        set(bytes[i],j);
-        j++;
-        if(j > 7){
-            j = 0;
-        }
-    }
-    printf("pointer of buffer is at %p and size is %d\n",bufptr, length);
-    printf("Contents of buffer as follows:\n");
-    ToHex(bufptr,length);
-    return 0;
 
 
     person_t Vinny;
@@ -77,6 +75,8 @@ int main()
     printf("%f",Results.MassFlow);
     return 0;
 }
+
+
 
 void ToHex(uint8_t buf[], int len){
 
